@@ -1,20 +1,26 @@
 package com.fahami.cda;
 
+import com.fahami.cda.exception.BlankInputException;
+
 public class Main {
     public static void main(String[] args) {
         System.out.println("Hello world!");
 
-        String name = "JOHN";
-        try {
-            int number = Integer.parseInt(name);
-            IO.println(number);
-        }catch(NumberFormatException e){
-            // e.printStackTrace();
-            IO.println("Exception levée : " + e.getMessage());
-        }catch(Exception e){
-            IO.println("Exception générique : " + e.getMessage());
+        try{
+          String saisie = inputFromUser();
+            IO.println(saisie);
+
+        }catch(BlankInputException e){
+            e.printStackTrace();
+        }
+    }
+
+    public static String inputFromUser() throws BlankInputException {
+        String saisieUtilisateur = IO.readln("Ecrire quelque chose");
+        if(saisieUtilisateur.isBlank()){
+            throw new BlankInputException("La saisie utilisateur ne peut pas être vide");
         }
 
-        IO.println("Tout s'est bien executé");
+        return saisieUtilisateur;
     }
 }
