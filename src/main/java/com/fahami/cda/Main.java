@@ -8,7 +8,7 @@ public class Main {
 
         try{
           String saisie = inputFromUser();
-            IO.println(saisie);
+            IO.println(saisie); // afficher la saisie utilisateur
 
         }catch(BlankInputException e){
             e.printStackTrace();
